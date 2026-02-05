@@ -1,15 +1,16 @@
 import { type PaletteMode, type PaletteOptions } from '@mui/material';
 
 // High-Tech Brand Colors
+// High-Tech Brand Colors - Refined Soft Palette
 const BrandColors = {
-  // Primary (Neon Blue/Cyan)
+  // Primary (Cyan/Blue - Softer)
   primary: {
-    main: '#00F0FF',
+    main: '#00B8CC', // Slightly darker/softer cyan
     light: '#5CFFFF',
-    dark: '#00B8CC',
+    dark: '#008A99',
     contrastText: '#000000',
   },
-  // Secondary (Neon Purple/Pink)
+  // Secondary (Purple - Softer)
   secondary: {
     main: '#7000FF',
     light: '#B266FF',
@@ -18,29 +19,29 @@ const BrandColors = {
   },
   // Backgrounds
   dark: {
-    default: '#050510', // Deep space blue/black
-    paper: '#0A0A1F', // Slightly lighter
+    default: '#121212', // Material Design Dark (Softer than #050510)
+    paper: '#1E2329', // Blue-grey tint, readable
   },
   light: {
-    default: '#F5F5FA',
+    default: '#F7F9FC', // Cool Grey (Softer than #F5F5FA)
     paper: '#FFFFFF',
   },
   // Text
   text: {
     dark: {
-      primary: '#FFFFFF',
-      secondary: 'rgba(255, 255, 255, 0.7)',
+      primary: '#E0E0E0', // Soft White (High readability)
+      secondary: '#B0B0B0', // Light Grey
     },
     light: {
-      primary: '#050510',
-      secondary: 'rgba(5, 5, 16, 0.7)',
+      primary: '#1A2027', // Soft Black (Gunmetal)
+      secondary: '#5E6C79', // Slate Grey
     },
   },
   // Status
-  success: '#00FF9D',
-  warning: '#FFD600',
-  error: '#FF003C',
-  info: '#00F0FF',
+  success: '#00E676',
+  warning: '#FFC400',
+  error: '#FF5252',
+  info: '#00B8CC',
 };
 
 /**

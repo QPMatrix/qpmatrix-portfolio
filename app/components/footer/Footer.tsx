@@ -1,4 +1,4 @@
-import { Typography, IconButton } from '@mui/material';
+import { Typography, IconButton, Link } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -52,9 +52,11 @@ export const Footer: FC = () => {
               <LinkedInIcon />
             </IconButton>
           </SocialLinks>
-          <Typography variant="body2" color="text.secondary">
-            hasan@qpmatrix.tech
-          </Typography>
+          <Link href="mailto:hasan@qpmatrix.tech">
+            <Typography variant="body2" color="text.secondary">
+             hasan@qpmatrix.tech
+            </Typography>
+          </Link>
         </FooterSection>
       </FooterContent>
 

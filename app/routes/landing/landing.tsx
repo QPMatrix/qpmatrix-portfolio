@@ -1,6 +1,7 @@
-import { Button } from '@mui/material';
-import type { Route } from './+types/home';
 import type { ReactNode } from 'react';
+import type { Route } from './+types/landing';
+import { QPContainer } from '~/components/ui';
+import HeroSections from './components/HeroSections';
 
 /**
  * Meta tags for the home page.
@@ -15,5 +16,7 @@ export function meta(_: Route.MetaArgs) {
  * @returns {ReactNode} The home page.
  */
 export default function Home(): ReactNode {
-  return <Button variant="contained">Hello world</Button>;
+  return <QPContainer>
+    <HeroSections/>
+  </QPContainer>
 }
