@@ -5,6 +5,7 @@ import SmartphoneIcon from '@mui/icons-material/Smartphone';
 import CloudIcon from '@mui/icons-material/Cloud';
 import SecurityIcon from '@mui/icons-material/Security';
 import type { ReactNode } from 'react';
+import { type Variants } from 'framer-motion';
 import {
   ServiceCardContent,
   ServiceDescription,
@@ -35,7 +36,7 @@ const services = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -45,7 +46,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
