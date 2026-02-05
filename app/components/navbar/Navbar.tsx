@@ -1,15 +1,10 @@
 import { type FC, type ReactNode, useState } from 'react';
 import { QPButton } from '../ui/QPButton';
-import {
-  NavbarContainer,
-  NavbarToolbar,
-  LogoText,
-  NavItems,
-  MobileMenuButton,
-} from './Navbar.styles';
+import { NavbarContainer, NavbarToolbar, NavItems, MobileMenuButton } from './Navbar.styles';
 import { ThemeSwitcher } from '../theme-switcher/ThemeSwitcher';
 import { Sidebar } from '../sidebar/Sidebar';
 import MenuIcon from '@mui/icons-material/Menu';
+import { LogoText } from '../ui/LogoText';
 
 /**
  * Responsive Navigation Bar component.

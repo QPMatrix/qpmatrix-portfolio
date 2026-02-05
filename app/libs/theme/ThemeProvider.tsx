@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import createEmotionCache from './caches/create-emotion-cache';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider as MuiThemeProvider, type PaletteMode } from '@mui/material';
@@ -30,15 +30,17 @@ const cache = createEmotionCache();
  */
 const ThemeProvider = ({ children }: ThemeProviderProps): ReactNode => {
   // Lazy initialization to avoid effect and handle SSR safety check
-  const [mode, setMode] = useState<PaletteMode>(() => {
-    if (typeof window !== 'undefined' && localStorage) {
-      const savedMode = localStorage.getItem('themeMode') as PaletteMode;
-      if (savedMode === 'light' || savedMode === 'dark') {
-        return savedMode;
-      }
+  // Always default to 'dark' to match server-side rendering and avoid hydration mismatch
+  const [mode, setMode] = useState<PaletteMode>('dark');
+
+  // Sync with local storage on client side
+  useEffect(() => {
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode;
+    if (savedMode === 'light' || savedMode === 'dark') {
+      setMode((prev) => (prev !== savedMode ? savedMode : prev));
     }
-    return 'dark'; // Default to High-Tech dark
-  });
+
+  }, []);
 
   const theme = useMemo(() => createAppTheme(mode), [mode]);
 

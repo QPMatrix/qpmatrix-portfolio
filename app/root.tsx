@@ -52,11 +52,13 @@ export function Layout({ children }: { children: ReactNode }): ReactNode {
  */
 export default function App(): ReactNode {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
-      <Outlet />
+      <div style={{ flex: 1 }}>
+        <Outlet />
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
