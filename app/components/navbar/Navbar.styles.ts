@@ -4,7 +4,8 @@ import { QPDiv } from '../ui/QPDiv';
 import { pxToRem } from '~/libs/theme/utils';
 
 export const NavbarContainer = styled(AppBar)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(10, 10, 31, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+  backgroundColor:
+    theme.palette.mode === 'dark' ? 'rgba(10, 10, 31, 0.95)' : 'rgba(255, 255, 255, 0.95)',
   backdropFilter: `blur(${pxToRem(12)})`,
   borderBottom: `${pxToRem(1)} solid ${theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)'}`,
   backgroundImage: 'none',
@@ -21,8 +22,6 @@ export const NavbarToolbar = styled(Toolbar)({
   alignItems: 'center',
   padding: `0 ${pxToRem(24)}`,
 });
-
-
 
 export const NavItems = styled(QPDiv)(({ theme }) => ({
   display: 'flex',

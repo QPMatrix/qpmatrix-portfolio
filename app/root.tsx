@@ -5,12 +5,15 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from 'react-router';
 import ThemeProvider from './libs/theme/ThemeProvider';
 import type { Route } from './+types/root';
+import { getTheme } from './libs/theme/theme.server';
 import type { ReactNode } from 'react';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
+import { styled } from '@mui/material';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -25,12 +28,25 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export const loader = async ({
+  request,
+}: Route.LoaderArgs): Promise<{ theme: import('@mui/material').PaletteMode | null }> => {
+  const theme = await getTheme(request);
+  return { theme };
+};
+
 /**
+ * Main Layout component.
  *
- * @param root0
- * @param root0.children
+ * @param {Object} props - The component props.
+ * @param {ReactNode} props.children - The child components.
+ * @param {object} [props.loaderData] - The loader data containing the theme.
+ * @returns {ReactNode} The layout component.
  */
 export function Layout({ children }: { children: ReactNode }): ReactNode {
+  const data = useLoaderData<typeof loader>();
+  const theme = data?.theme || 'dark';
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -40,25 +56,36 @@ export function Layout({ children }: { children: ReactNode }): ReactNode {
         <Links />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
 }
+
+const AppContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column',
+  minHeight: '100vh',
+});
+
+const MainContent = styled('div')({
+  flex: 1,
+});
+
 /**
  *
  */
 export default function App(): ReactNode {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <AppContainer>
       <Navbar />
-      <div style={{ flex: 1 }}>
+      <MainContent>
         <Outlet />
-      </div>
+      </MainContent>
       <Footer />
-    </div>
+    </AppContainer>
   );
 }
 
