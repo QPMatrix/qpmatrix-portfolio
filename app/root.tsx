@@ -9,6 +9,8 @@ import {
 import ThemeProvider from './libs/theme/ThemeProvider';
 import type { Route } from './+types/root';
 import type { ReactNode } from 'react';
+import { Navbar } from './components/navbar';
+import { Footer } from './components/footer';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -49,7 +51,13 @@ export function Layout({ children }: { children: ReactNode }): ReactNode {
  *
  */
 export default function App(): ReactNode {
-  return <Outlet />;
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </>
+  );
 }
 
 /**
