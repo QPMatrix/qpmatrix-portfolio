@@ -42,6 +42,18 @@ export const SocialLinks = styled(QPDiv)({
   gap: pxToRem(16),
 });
 
+export const FooterBrand = styled(FooterSection)(() => ({
+  maxWidth: pxToRem(350),
+  '& p': {
+    lineHeight: 1.6,
+  }
+}));
+
+export const FooterPrivacyLinks = styled(QPDiv)(({ theme }) => ({
+  display: 'flex',
+  gap: theme.spacing(2),
+}));
+
 export const CopyrightBar = styled(QPDiv)(({ theme }) => ({
   maxWidth: 1200,
   margin: '0 auto',
@@ -50,4 +62,12 @@ export const CopyrightBar = styled(QPDiv)(({ theme }) => ({
   borderTop: `${pxToRem(1)} solid ${theme.palette.divider}`,
   textAlign: 'center',
   color: theme.palette.text.secondary,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  [theme.breakpoints.up('md')]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  }
 }));

@@ -1,10 +1,27 @@
+
+
+/**
+ * Responsive Navigation Bar component.
+ * Features a glassmorphism effect and gradient logo.
+ * @returns {ReactNode} The rendered Navbar.
+ */
 import { type FC, type ReactNode, useState } from 'react';
-import { QPButton } from '../ui/QPButton';
-import { NavbarContainer, NavbarToolbar, NavItems, MobileMenuButton } from './Navbar.styles';
+import { useLocation, NavLink as RouterNavLink } from 'react-router';
+import { NavbarContainer, NavbarToolbar, NavItems, MobileMenuButton, LogoWrapper, NavActions, StyledNavLink } from './Navbar.styles';
 import { ThemeSwitcher } from '../theme-switcher/ThemeSwitcher';
 import { Sidebar } from '../sidebar/Sidebar';
 import MenuIcon from '@mui/icons-material/Menu';
 import { LogoText } from '../ui/LogoText';
+import { Box, Typography } from '@mui/material';
+import { motion } from 'framer-motion';
+import { MotionBox } from '~/components/ui/Motion';
+
+// Icons
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import BusinessCenterRoundedIcon from '@mui/icons-material/BusinessCenterRounded';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 
 /**
  * Responsive Navigation Bar component.
@@ -13,36 +30,78 @@ import { LogoText } from '../ui/LogoText';
  */
 export const Navbar: FC = (): ReactNode => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   const handleDrawerToggle = (): void => {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const navLinks = [
+    { name: 'Home', path: '/', icon: <HomeRoundedIcon fontSize="small" /> },
+    { name: 'Services', path: '/#services', icon: <BusinessCenterRoundedIcon fontSize="small" /> },
+    { name: 'Projects', path: '/projects', icon: <CodeRoundedIcon fontSize="small" /> },
+    { name: 'Founder', path: '/founder', icon: <PersonRoundedIcon fontSize="small" /> },
+    { name: 'Contact', path: '/#contact', icon: <EmailRoundedIcon fontSize="small" /> },
+  ];
+
   return (
     <>
       <NavbarContainer position="sticky">
         <NavbarToolbar>
-          <LogoText variant="h5">QPMatrix</LogoText>
+          <LogoWrapper>
+             <a href="/">
+                <LogoText variant="h5">QPMatrix</LogoText>
+             </a>
+          </LogoWrapper>
 
           {/* Desktop Navigation */}
           <NavItems>
-            <QPButton variant="text" color="inherit" href="/">
-              News
-            </QPButton>
-            <QPButton variant="text" color="inherit" href="/about">
-              About
-            </QPButton>
-            <QPButton variant="contained" color="primary">
-              Login
-            </QPButton>
-            {/* Theme Switcher for Desktop */}
-            <ThemeSwitcher />
+            {navLinks.map((item) => {
+               const isActive = location.pathname === item.path || (item.path !== '/' && location.hash === item.path.replace('/',''));
+               
+               return (
+                <StyledNavLink 
+                  key={item.name}
+                  href={item.path}
+                >
+                  {isActive && (
+                    <MotionBox
+                      layoutId="navbar-active"
+                      sx={{
+                        position: 'absolute',
+                        inset: 0,
+                        backgroundColor: 'rgba(0, 184, 204, 0.1)',
+                        borderRadius: '50px',
+                        zIndex: -1,
+                      }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <Box sx={{ display: 'flex', alignItems: 'center', color: isActive ? 'primary.main' : 'inherit' }}>
+                    {item.icon}
+                  </Box>
+                  <Typography 
+                    variant="body2" 
+                    fontWeight={isActive ? 700 : 500}
+                    color={isActive ? 'primary.main' : 'inherit'}
+                  >
+                    {item.name}
+                  </Typography>
+                </StyledNavLink>
+               )
+            })}
           </NavItems>
 
-          {/* Mobile View Toggle */}
-          <MobileMenuButton variant="text" color="inherit" onClick={handleDrawerToggle}>
-            <MenuIcon />
-          </MobileMenuButton>
+          <NavActions>
+            {/* Theme Switcher for Desktop */}
+            <ThemeSwitcher />
+            
+            {/* Mobile View Toggle */}
+            <MobileMenuButton variant="text" color="inherit" onClick={handleDrawerToggle}>
+              <MenuIcon />
+            </MobileMenuButton>
+          </NavActions>
+
         </NavbarToolbar>
       </NavbarContainer>
 

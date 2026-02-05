@@ -32,6 +32,39 @@ export const NavItems = styled(QPDiv)(({ theme }) => ({
   },
 }));
 
+export const LogoWrapper = styled(QPDiv)({
+  flex: 1, 
+  display: 'flex', 
+  justifyContent: 'flex-start',
+  '& a': {
+    textDecoration: 'none',
+  },
+});
+
+export const NavActions = styled(QPDiv)(({ theme }) => ({
+  flex: 1, 
+  display: 'flex', 
+  justifyContent: 'flex-end', 
+  gap: theme.spacing(1),
+}));
+
+export const StyledNavLink = styled('a')(({ theme }) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  gap: theme.spacing(1),
+  textDecoration: 'none',
+  color: theme.palette.text.primary,
+  fontWeight: 500,
+  padding: theme.spacing(1, 2),
+  borderRadius: '50px',
+  transition: 'all 0.2s',
+  '&:hover': {
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.action.hover,
+  },
+}));
+
 export const MobileMenuButton = styled(QPButton)(({ theme }) => ({
   display: 'none',
   [theme.breakpoints.down('md')]: {

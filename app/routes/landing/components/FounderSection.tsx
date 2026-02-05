@@ -95,7 +95,7 @@ export const FounderSection = (): ReactNode => {
             </BioText>
 
             <FounderActions>
-              <QPButton size="large" onClick={() => window.open('https://qpmatrix.tech', '_blank')}>
+              <QPButton size="large" href="/founder">
                 Learn More
               </QPButton>
               <QPButton size="large" variant="outlined" color="primary">
