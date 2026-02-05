@@ -90,8 +90,10 @@ export const ButtonGroup = styled(Box)(({ theme }) => ({
 export const ScrollIndicator = styled(Box)(({ theme }) => ({
   position: 'absolute',
   bottom: theme.spacing(4),
-  left: '50%',
-  transform: 'translateX(-50%)',
+  left: 0,
+  right: 0,
+  marginInline: 'auto',
+  width: 'fit-content',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
