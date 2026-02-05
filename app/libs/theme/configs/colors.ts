@@ -1,47 +1,47 @@
 import { type PaletteMode, type PaletteOptions } from '@mui/material';
 
 // High-Tech Brand Colors
-// High-Tech Brand Colors - Refined Soft Palette
+// High-End "Alive" Brand Colors
 const BrandColors = {
-  // Primary (Cyan/Blue - Softer)
+  // Primary (Neon Cyan - Electric)
   primary: {
-    main: '#00B8CC', // Slightly darker/softer cyan
-    light: '#5CFFFF',
-    dark: '#008A99',
+    main: '#00E5FF', 
+    light: '#88FFFF',
+    dark: '#00B2CC',
     contrastText: '#000000',
   },
-  // Secondary (Purple - Softer)
+  // Secondary (Deep Neon Purple)
   secondary: {
-    main: '#7000FF',
-    light: '#B266FF',
-    dark: '#4700B3',
+    main: '#7C4DFF',
+    light: '#B47CFF',
+    dark: '#3F1DCB',
     contrastText: '#FFFFFF',
   },
-  // Backgrounds
+  // Backgrounds - True Black + Deep Space
   dark: {
-    default: '#121212', // Material Design Dark (Softer than #050510)
-    paper: '#1E2329', // Blue-grey tint, readable
+    default: '#0A0A0F', // Very dark blue/black, not pure black, more premium
+    paper: '#13131F', // Slightly lighter for cards
   },
   light: {
-    default: '#F7F9FC', // Cool Grey (Softer than #F5F5FA)
-    paper: '#FFFFFF',
+    default: '#FFFFFF',
+    paper: '#F8F9FA',
   },
   // Text
   text: {
     dark: {
-      primary: '#E0E0E0', // Soft White (High readability)
-      secondary: '#B0B0B0', // Light Grey
+      primary: '#FFFFFF', // Pure White for max contrast
+      secondary: '#B0B0C0', // Cool Grey
     },
     light: {
-      primary: '#1A2027', // Soft Black (Gunmetal)
-      secondary: '#5E6C79', // Slate Grey
+      primary: '#0A0A0F',
+      secondary: '#4A4A5A',
     },
   },
-  // Status
-  success: '#00E676',
-  warning: '#FFC400',
-  error: '#FF5252',
-  info: '#00B8CC',
+  // Status - Vibrant
+  success: '#00FF9D',
+  warning: '#FFD600',
+  error: '#FF2D55',
+  info: '#00E5FF',
 };
 
 /**

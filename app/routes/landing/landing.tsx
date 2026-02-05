@@ -4,7 +4,6 @@ import HeroSections from './components/HeroSections';
 import { ServicesSection } from './components/ServicesSection';
 import { FounderSection } from './components/FounderSection';
 import { ContactSection } from './components/ContactSection';
-import { QPContainer } from '~/components/ui';
 
 /**
  * Meta tags for the home page.
@@ -24,13 +23,15 @@ export function meta(_: Route.MetaArgs) {
  *
  * @returns {ReactNode} The home page.
  */
+import { Box } from '@mui/material';
+
 export default function Home(): ReactNode {
   return (
-    <QPContainer component="main">
+    <Box component="main" sx={{ overflowX: 'hidden' }}>
       <HeroSections />
       <ServicesSection />
       <FounderSection />
       <ContactSection />
-    </QPContainer>
+    </Box>
   );
 }

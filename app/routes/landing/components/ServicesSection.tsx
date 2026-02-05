@@ -20,7 +20,7 @@ const services = [
   },
   {
     title: 'Mobile App Solutions',
-    description: 'High-performance native and cross-platform mobile applications that ensure a seamless experience on both iOS and Android devices.',
+    description: 'High performance native and cross platform mobile applications that ensure a seamless experience on both iOS and Android devices.',
     icon: <SmartphoneIcon color="secondary" />,
   },
   {
@@ -35,33 +35,76 @@ const services = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 12,
+    },
+  },
+};
+
+import { MotionBox, MotionGrid } from '~/components/ui/Motion';
+
 export const ServicesSection = (): ReactNode => {
   return (
-    <QPSection id="services">
+    <QPSection id="services" sx={{ overflow: 'hidden' }}>
       <QPContainer sx={{ py: 10 }}>
-        <QPTitle variant="h2" sx={{ mb: 8 }}>
-          What We Do
-        </QPTitle>
+        <MotionBox
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <QPTitle variant="h2" sx={{ mb: 8 }}>
+            What We Do
+          </QPTitle>
+        </MotionBox>
         
-        <Grid container spacing={4}>
-          {services.map((service, index) => (
-            <Grid size={{ xs: 12, md: 6, lg: 3 }} key={index}>
-              <QPCard sx={{ height: '100%', overflow: 'hidden' }}>
-                <ServiceCardContent>
-                  <ServiceIconWrapper>
-                    {service.icon}
-                  </ServiceIconWrapper>
-                  <ServiceTitle variant="h5">
-                    {service.title}
-                  </ServiceTitle>
-                  <ServiceDescription variant="body1">
-                    {service.description}
-                  </ServiceDescription>
-                </ServiceCardContent>
-              </QPCard>
-            </Grid>
-          ))}
-        </Grid>
+        <MotionBox
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <Grid container spacing={4}>
+            {services.map((service, index) => (
+              <MotionGrid 
+                size={{ xs: 12, md: 6, lg: 3 }} 
+                key={index}
+                variants={itemVariants}
+              >
+                <QPCard sx={{ height: '100%', overflow: 'hidden' }}>
+                  <ServiceCardContent>
+                    <ServiceIconWrapper>
+                      {service.icon}
+                    </ServiceIconWrapper>
+                    <ServiceTitle variant="h5">
+                      {service.title}
+                    </ServiceTitle>
+                    <ServiceDescription variant="body1">
+                      {service.description}
+                    </ServiceDescription>
+                  </ServiceCardContent>
+                </QPCard>
+              </MotionGrid>
+            ))}
+          </Grid>
+        </MotionBox>
       </QPContainer>
     </QPSection>
   );
