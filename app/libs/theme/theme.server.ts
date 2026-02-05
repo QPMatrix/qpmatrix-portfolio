@@ -12,8 +12,6 @@ const themeCookie = createCookie('themeMode', {
 export const getTheme = async (request: Request): Promise<PaletteMode | null> => {
   const cookieHeader = request.headers.get('Cookie');
   const theme = await themeCookie.parse(cookieHeader);
-  console.log('[ThemeServer] request cookie header:', cookieHeader);
-  console.log('[ThemeServer] parsed theme:', theme);
   if (theme === 'light' || theme === 'dark') {
     return theme;
   }
@@ -22,6 +20,5 @@ export const getTheme = async (request: Request): Promise<PaletteMode | null> =>
 
 export const setTheme = async (theme: PaletteMode): Promise<string> => {
   const cookie = await themeCookie.serialize(theme);
-  console.log('[ThemeServer] Setting cookie:', cookie);
   return cookie;
 };
