@@ -13,7 +13,8 @@ import { getTheme } from './libs/theme/theme.server';
 import type { ReactNode } from 'react';
 import { Navbar } from './components/navbar';
 import { Footer } from './components/footer';
-import { styled } from '@mui/material';
+import { styled, Typography, Box } from '@mui/material';
+import { QPContainer, QPTitle } from '~/components/ui';
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
@@ -64,35 +65,42 @@ export function Layout({ children }: { children: ReactNode }): ReactNode {
   );
 }
 
-const AppContainer = styled('div')({
+const AppWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   minHeight: '100vh',
-});
+  color: theme.palette.text.primary,
+}));
 
-const MainContent = styled('div')({
+const MainContent = styled(Box)(() => ({
   flex: 1,
-});
+  display: 'flex',
+  flexDirection: 'column',
+}));
 
 /**
+ * The main application component.
  *
+ * @returns {ReactNode} The rendered application.
  */
 export default function App(): ReactNode {
   return (
-    <AppContainer>
+    <AppWrapper>
       <Navbar />
       <MainContent>
         <Outlet />
       </MainContent>
       <Footer />
-    </AppContainer>
+    </AppWrapper>
   );
 }
 
 /**
+ * The global Error Boundary.
  *
- * @param root0
- * @param root0.error
+ * @param {Route.ErrorBoundaryProps} props - The component props.
+ * @param {unknown} props.error - The error object.
+ * @returns {ReactNode} The error page.
  */
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactNode {
   let message = 'Oops!';
@@ -109,14 +117,27 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps): ReactNode {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <QPContainer component="main">
+      <QPTitle variant="h1">{message}</QPTitle>
+      <Typography variant="body1" align="center" sx={{ mb: 4 }}>
+        {details}
+      </Typography>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <Box
+          component="pre"
+          sx={{
+            width: '100%',
+            p: 4,
+            overflowX: 'auto',
+            bgcolor: 'background.paper',
+            borderRadius: 2,
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
           <code>{stack}</code>
-        </pre>
+        </Box>
       )}
-    </main>
+    </QPContainer>
   );
 }

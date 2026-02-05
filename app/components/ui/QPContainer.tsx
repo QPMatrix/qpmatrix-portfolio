@@ -9,10 +9,10 @@ import type { FC } from 'react';
  * @returns {JSX.Element} The styled container.
  */
 export const QPContainer: FC<ContainerProps> = styled(Container)(({ theme }) => ({
-  paddingTop: theme.spacing(4),
-  paddingBottom: theme.spacing(4),
+  paddingTop: theme.spacing(2),
+  paddingBottom: theme.spacing(2),
   [theme.breakpoints.up('md')]: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
 })) as FC<ContainerProps>;

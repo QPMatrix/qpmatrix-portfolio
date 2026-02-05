@@ -1,22 +1,36 @@
 import type { ReactNode } from 'react';
 import type { Route } from './+types/landing';
-import { QPContainer } from '~/components/ui';
 import HeroSections from './components/HeroSections';
+import { ServicesSection } from './components/ServicesSection';
+import { FounderSection } from './components/FounderSection';
+import { ContactSection } from './components/ContactSection';
+import { QPContainer } from '~/components/ui';
 
 /**
  * Meta tags for the home page.
- * @param _
  */
 export function meta(_: Route.MetaArgs) {
-  return [{ title: 'QPMatrix' }, { name: 'description', content: 'Welcome to QPMatrix!' }];
+  return [
+    { title: 'QPMatrix - Digital Transformation & Software Solutions' },
+    { 
+      name: 'description', 
+      content: 'QPMatrix provides top-tier web development, mobile apps, and cloud security solutions. Transform your business with our expert engineering.' 
+    }
+  ];
 }
 
 /**
- * Home page.
+ * The home page component.
+ *
  * @returns {ReactNode} The home page.
  */
 export default function Home(): ReactNode {
-  return <QPContainer>
-    <HeroSections/>
-  </QPContainer>
+  return (
+    <QPContainer component="main">
+      <HeroSections />
+      <ServicesSection />
+      <FounderSection />
+      <ContactSection />
+    </QPContainer>
+  );
 }
