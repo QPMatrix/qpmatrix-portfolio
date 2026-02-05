@@ -1,5 +1,6 @@
-import { AppBar, Toolbar, Typography, Box, styled } from '@mui/material';
+import { AppBar, Toolbar, Typography, styled } from '@mui/material';
 import { QPButton } from '../ui/QPButton';
+import { QPDiv } from '../ui/QPDiv';
 
 export const NavbarContainer = styled(AppBar)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? 'rgba(5, 5, 16, 0.8)' : '#ffffff',
@@ -10,6 +11,7 @@ export const NavbarContainer = styled(AppBar)(({ theme }) => ({
   position: 'sticky',
   top: 0,
   zIndex: theme.zIndex.appBar,
+  color: theme.palette.text.primary,
 }));
 
 export const NavbarToolbar = styled(Toolbar)({
@@ -31,7 +33,7 @@ export const LogoText = styled(Typography)(({ theme }) => ({
   cursor: 'pointer',
 }));
 
-export const NavItems = styled(Box)(({ theme }) => ({
+export const NavItems = styled(QPDiv)(({ theme }) => ({
   display: 'flex',
   gap: theme.spacing(2),
   alignItems: 'center',

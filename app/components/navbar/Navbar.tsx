@@ -1,8 +1,15 @@
 import { type FC, type ReactNode, useState } from 'react';
 import { QPButton } from '../ui/QPButton';
-import { NavbarContainer, NavbarToolbar, LogoText, NavItems, MobileMenuButton } from './Navbar.styles';
+import {
+  NavbarContainer,
+  NavbarToolbar,
+  LogoText,
+  NavItems,
+  MobileMenuButton,
+} from './Navbar.styles';
 import { ThemeSwitcher } from '../theme-switcher/ThemeSwitcher';
 import { Sidebar } from '../sidebar/Sidebar';
+import MenuIcon from '@mui/icons-material/Menu';
 
 /**
  * Responsive Navigation Bar component.
@@ -20,9 +27,7 @@ export const Navbar: FC = (): ReactNode => {
     <>
       <NavbarContainer position="sticky">
         <NavbarToolbar>
-          <LogoText variant="h5">
-            QPMatrix
-          </LogoText>
+          <LogoText variant="h5">QPMatrix</LogoText>
 
           {/* Desktop Navigation */}
           <NavItems>
@@ -41,7 +46,7 @@ export const Navbar: FC = (): ReactNode => {
 
           {/* Mobile View Toggle */}
           <MobileMenuButton variant="text" color="inherit" onClick={handleDrawerToggle}>
-            Menu
+            <MenuIcon />
           </MobileMenuButton>
         </NavbarToolbar>
       </NavbarContainer>

@@ -1,38 +1,14 @@
-import { Drawer, Box, List, ListItem, ListItemButton, ListItemText, styled, Typography } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemText, Typography } from '@mui/material';
 import type { FC } from 'react';
 import { ThemeSwitcher } from '../theme-switcher/ThemeSwitcher';
 import { QPButton } from '../ui/QPButton';
+import { QPDiv } from '../ui/QPDiv';
+import { SidebarContainer, DrawerHeader, FlexSpacer, SidebarFooter } from './Sidebar.styles';
 
 type SidebarProps = {
   open: boolean;
   onClose: () => void;
 };
-
-const DrawerHeader = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: theme.spacing(2),
-  borderBottom: `1px solid ${theme.palette.divider}`,
-}));
-
-const SidebarContainer = styled(Box)({
-  width: 280, // Classic sidebar width
-  display: 'flex',
-  flexDirection: 'column',
-  height: '100%',
-});
-
-const FlexSpacer = styled(Box)({
-  flexGrow: 1,
-});
-
-const SidebarFooter = styled(Box)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: `1px solid ${theme.palette.divider}`,
-  display: 'flex',
-  justifyContent: 'center',
-}));
 
 export const Sidebar: FC<SidebarProps> = ({ open, onClose }) => {
   return (
@@ -60,11 +36,11 @@ export const Sidebar: FC<SidebarProps> = ({ open, onClose }) => {
 
         <FlexSpacer />
 
-        <Box p={2}>
-           <QPButton fullWidth variant="contained" color="primary">
-             Login
-           </QPButton>
-        </Box>
+        <QPDiv p={2}>
+          <QPButton fullWidth variant="contained" color="primary">
+            Login
+          </QPButton>
+        </QPDiv>
 
         <SidebarFooter>
           <Typography variant="caption" color="text.secondary">
