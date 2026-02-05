@@ -1,4 +1,5 @@
 import type { Components, Theme } from '@mui/material';
+import { LinkBehavior } from '~/components/links';
 
 /**
  * Component overrides to enforce the High-Tech aesthetic.
@@ -24,6 +25,16 @@ export const getComponents = (theme: Theme): Components<Theme> => {
             border: isDark ? '2px solid #050510' : '2px solid #f5f5f5',
           },
         },
+      },
+    },
+    MuiButtonBase: {
+      defaultProps: {
+        LinkComponent: LinkBehavior,
+      },
+    },
+    MuiLink: {
+      defaultProps: {
+        component: LinkBehavior,
       },
     },
     MuiButton: {
